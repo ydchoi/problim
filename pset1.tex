@@ -37,14 +37,13 @@
 \newtheorem*{remark}{Remark}
 \usepackage{verbatimbox}
 \usepackage{listings}
-\title{Probability Limit Theorem: \\
+\title{Basic Probability: \\
 Problem Set I}
 
 
 \author{
 Youngduck Choi \\
 CILVR Lab \\
-Courant Institute of Mathematical Sciences \\
 New York University\\
 \texttt{yc1104@nyu.edu} \\
 }
@@ -70,14 +69,35 @@ New York University\\
 
 \begin{abstract}
 This work contains a collection of solutions for selected problems 
-of the Lecture I of
-Probability Limit Theorem I of Fall 2015.
+of the Basic Probability course of Fall 2015.
 \end{abstract}
 
 \begin{question}[1.dd]
 \end{question}
 \begin{solution}
-Let $( \Omega, \mathbb{F}, \mathbb{P})$ be a probability space. 
+\textbf{(i)}
+Let $X = \{ (a,b) | a \in \mathbb{Q}, b \in \mathbb{Q} \}$. In particular, $X = \mathbb{Q}
+\times \mathbb{Q}$. Notice that by the Cantor diagonalization argument, there exists
+a bijective map $\phi: \mathbb{Q} \times \mathbb{Q} \to \mathbb{N} \times \mathbb{N}$. Now,
+consider a map $\psi: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ such that $\psi(m,n) = (m+n)^2 + n$.
+With some algebra, we can show that if $\psi(m,n) = \psi(m',n')$, then $m = m'$ and $n = n'$. Hence,
+$\psi$ is injective, and $\mathbb{N} \times \mathbb{N}$ is equipotent to $\psi(\mathbb{N} \times \mathbb{N})$,
+which is a subset of the countable set $\mathbb{N}$. Therefore, we have shown that $\mathbb{N} \times \mathbb{N}$
+is countable, and consequently $X$ is countable, due to the existence of the bijective map $\phi$.
+
+\bigskip
+
+\textbf{(ii)}
+Let $X = \{ B((x,y),r) | x = y \}$. Consider the set $Y$ such that $Y = \{ B((x,y),1) | x = y \}$. $Y$ is in fact
+equipotent with $\mathbb{R}$, as you can arbitrarily pick the center from $\mathbb{R}$ and that determines the
+circle in $Y$. Hence, $Y$ is uncountable. Furthermore, notice that $Y \subset X$. Hence, $X$ is uncountable.
+
+\bigskip
+
+\textbf{(iii)}
+
+
+
 \end{solution}
 
 \bigskip
@@ -85,12 +105,12 @@ Let $( \Omega, \mathbb{F}, \mathbb{P})$ be a probability space.
 \begin{question}[2-(i). $\sigma$-field]
 \end{question}
 \begin{solution}
-Let $\{ \mathbb{G}_{\lambda} \}_{\lambda \in \Lambda}$ be a collection of $\sigma$-fields
+Let $\{ \mathcal{G}_{\lambda} \}_{\lambda \in \Lambda}$ be a collection of $\sigma$-fields
 of the space $\Omega$.
 We wish to show that $\cap_{\lambda \in \Lambda} \mathbb{G}_{\lambda}$ is a $\sigma$-field of $\Omega$.
-As $\emptyset$, $\Omega \in \mathbb{G}$ for all $\lambda \in \Lambda$, we have that
+As $\emptyset$, $\Omega \in \mathcal{G}$ for all $\lambda \in \Lambda$, we have that
 \[
-\emptyset, \>\> \Omega \in \cap_{\lambda \in \Lambda} \mathbb{G}_{\lambda},
+\emptyset, \>\> \Omega \in \cap_{\lambda \in \Lambda} \mathcal{G}_{\lambda},
 \]
 thereby satisfying one basic property of $\sigma$-field. It remains to show that 
 a union of countable collection of subsets in 
