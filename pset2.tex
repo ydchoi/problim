@@ -41,7 +41,7 @@
 \usepackage{verbatimbox}
 \usepackage{listings}
 \title{Basic Probability: \\
-Problem Set I}
+Problem Set II}
 
 
 \author{
@@ -78,137 +78,100 @@ of the Basic Probability course of Fall 2015.
 \begin{question}[1. Countability]
 \end{question}
 \begin{solution}
-\textbf{(i)}
-Let $X = \{ (a,b) | a \in \mathbb{Q}, b \in \mathbb{Q} \}$. In particular, $X = \mathbb{Q}
-\times \mathbb{Q}$. Notice that by the Cantor diagonalization argument, there exists
-a bijective map $\phi: \mathbb{Q} \times \mathbb{Q} \to \mathbb{N} \times \mathbb{N}$. Now,
-consider a map $\psi: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ such that $\psi(m,n) = (m+n)^2 + n$.
-With some algebra, we can show that if $\psi(m,n) = \psi(m',n')$, then $m = m'$ and $n = n'$. Hence,
-$\psi$ is injective, and $\mathbb{N} \times \mathbb{N}$ is equipotent to $\psi(\mathbb{N} \times \mathbb{N})$,
-which is a subset of the countable set $\mathbb{N}$. Therefore, we have shown that $\mathbb{N} \times \mathbb{N}$
-is countable, and consequently $X$ is countable, due to the existence of the bijective map $\phi$.
-
-\bigskip
-
-\textbf{(ii)}
-Let $X = \{ B((x,y),r) | x = y \}$. Consider the set $Y$ such that $Y = \{ B((x,y),1) | x = y \}$. $Y$ is in fact
-equipotent with $\mathbb{R}$, as you can arbitrarily pick the center from $\mathbb{R}$ and that determines the
-circle in $Y$. Hence, $Y$ is uncountable. Furthermore, notice that $Y \subset X$. Hence, $X$ is uncountable.
-
-\bigskip
-
-\textbf{(iii)}
-We can prove that the set of all sequences of integers whose term are either $0$ or $1$ is uncountable,
-by the diagnonalization argument. Assume that the set is countable. Then, let $\{ s_i \}_{i=1}^{\infty}$
-be an enumeration of such set, such that each $s_i$ is a sequence, further denoted by
-$\{ s_{i,k} \}_{k=1}^{\infty}$. Construct a sequence $\{ x_i \}_{i=1}^{\infty}$ such that $x_i = s_{i,i}$.
-Then, $\{ x_i \}$ sequence does not belong to the set of all sequences integers whose term are 
-either $0$ or $1$. Contradiction. The set is uncountable.
-
+Suppose $\Omega$ is a infinite set. Then, there 
 \end{solution}
 
 \bigskip
 
-\begin{question}[2. Basic Combinatorics I]
+\begin{question}[2. Limit of Probabilities of Disjoint Events]
 \end{question}
 \begin{solution}
-
-\textbf{(i)} The total number of possible ordering of age is $5!$, as we treat each children to be distinct.
-The total number of possible ordering of age, given that the eldest three children all have to girls
-is $3!2!$. Hence, the probability of the event, where the eldest three children are girls, is 
-$\dfrac{3!2!}{5!} = \dfrac{1}{\binom{5}{2}}$, given the assumption that all orderings are equally likely.
-
-\bigskip
-
-\textbf{(ii)}
-The total number of possible team arrangements, given the constraints is $\binom{11}{5} \binom{6}{4}$. A 
-combinatorial interpretation is that we first pick the team with 5 members, then pick the team with 4 members
-from the remaining people. As $5$, $4$, and $2$ are all distinct numbers, we do not have to consider
-over-counting in this case.
-
-\end{solution}
-
-\pagebreak
-
-\begin{question}[3. Basic Combinatorics II]
-\end{question}
-
-\begin{solution}
-As there are $30$ distinct classes, we have $\binom{30}{7}$ for the numerator. For the denominator,
-the total number of possible configuration, with which we have a class everyday,
-we first have $6^5$ to choose a class for Monday through Friday. Now, for the remaining two classes,
-we can freely choose from the free $2$ slots. Hence, we have $\binom{25}{2}$, and $6^5 \binom{25}{2}$
-for the total number. Therefore, the probability, under uniform randomness, is $\dfrac{6^5
-\binom{25}{2}}{\binom{30}{7}}$. 
+Let $( A_n )_{n \geq 0}$ be a set of disjoint events and $\mathbb{P}$ be a probability.
+Suppose for sake of contradiction that $\underset{n \to \infty}{\lim} \mathbb{P}(A_n )$
+does not converge to $0$. Then, there exists $\epsilon > 0$ such that for all $n \geq 0$,
+such that $\mathbb{P}(A_n ) \geq \epsilon$. Then, 
+as the events are disjoint, by the countable additivity of probability,
+we have 
+\eQb
+\mathbb{P}(\cup_{n=0}^{\infty} A_n ) &=& \sum_{n=0}^{\infty} \mathbb{P}(A_n ) 
+\geq \sum_{n=0}^{\infty} \epsilon = \infty. 
+\eQe
+Hence, we obtain that $\mathbb{P}(\cup_{n=0}^{\infty} A_n) \geq \infty$. This is a contradiction,
+as a probability measure assigns any event in the $\sigma$-algebra to some real number in $[0,1]$.
+Hence, $\underset{n \to \infty}{\lim} \mathbb{P}(A_n) = 0$. $\qed$
 \end{solution}
 
 \bigskip
 
-\begin{question}[4. Geometric Distribution and its Variance]
+\begin{question}[3.]
 \end{question}
 \begin{solution}
-We have that $\mathrm{Var}(X) = \mathrm{E}[X^2] - \mathrm{E}[X]^2$. We proceed to compute 
-$\mathrm{E}[X]$,
-for the given geometric distribution, $\mathbb{P}(X = k) = (1-q)^k q$. 
-\eQb
-\mathrm{E}[X] &=& \sum_{k=0}^{\infty} k(1-q)^{k}q \\
-&=& q(1-q)\sum_{k=1}^{\infty} k(p)^{k-1},
-\eQe
-where $p = 1-q$. Notice that the summation is a derivative of the power series $\sum p^k$. Hence,
-we can simplify the RHS and obtain
-\eQb
-\mathrm{E}[X] &=& q(1-q)\dfrac{1}{(1-p)^2} \nonumber \\
-&=& \dfrac{1-q}{q}.
-\eQe
-We now proceed to compute $\mathrm{E}[X^2]$. We first have
-\eQb
-\mathrm{E}[X^2] &=& \sum_{k=0}^{\infty} k^2 (1-q)^k q \\
-&=& q(1-q)^2\sum_{k=2}^{\infty} k(k-1)(p)^{k-1} - 
-q(1-q) \sum_{k=1}^{\infty}
-k(p)^{k-1},
-\eQe
-where $p = 1-q$. Again using the derivative of the power series $\sum p_k$ we have,
-\eQb
-\mathrm{E}[X^2] &=& q(1-q)^2(\dfrac{2}{(1-p)^3}) - q(1-q)(\dfrac{1}{(1-p)^2}) \\
-&=& \dfrac{2(1-q)^2}{q^2} - \dfrac{1-q}{q} \\ 
-&=& \dfrac{(2-q)(1-q)}{q^2}.
-\eQe
+\end{solution}
 
-Substituting the computed 
-equality into the variance equation, we obtain
+\bigskip
+
+\begin{question}[4.]
+\end{question}
+\begin{solution}
+A pair of dice is rolled until a sum of either 
+$5$ or $7$ appears. We wish to compute the probability that a $5$
+occurs first.
+Let $E_n$ denote the event, where a $5$ occurs on the $n$th roll,
+and no $5$ or $7$ occurs on the first $(n-1)$ roll.
+The probability that we wish to compute can be written as
 \eQb
-\mathrm{Var}(X) &=& \dfrac{(2-q)(1-q)}{q^2} - (\dfrac{1-q}{q})^2 
+\sum_{n=1}^{\infty} \mathbb{P}( E_n ),
 \eQe
-Hence, we have that
+as each $E_n$ are pairwise disjoint events.
+Let $F_n$ denote the event, where no $5$ or $7$ occurs on the $n$th roll,
+and let $G_n$ denote the event, where $5$ occurs on the $n$th roll.
 \eQb
-\mathrm{Var}(X) &=& \dfrac{1-q}{q^2}.
+\mathbb{P}(E_n ) &=& \mathbb{P}((\cup_{k=1}^{n-1}F_k) \cup G_n). 
 \eQe
+Now, with the independence assumption on each throw, we can factorize the RHS,
+and obtain
+\eQnb
+\mathbb{P}(E_n ) &=& \mathbb{P}(G_n) \prod_{k=1}^{n-1}\mathbb{P}(F_{k}), 
+\eQne
+where $n-1 = 0$ case for the product term is defined to be $1$.
+Assuming that the two dices are both fair dices, through a simple combinatorial argument(just count!),
+we can obtain that
+\eQb
+\mathbb{P}(G_n) &=& \dfrac{4}{36} = \dfrac{1}{9}, \\
+\mathbb{P}(F_n) &=& 1 - \dfrac{4}{36} - \dfrac{6}{36} = \dfrac{26}{36} = \dfrac{13}{18}. 
+\eQe
+Substituting the above equations into $(1)$, we have
+\eQb
+\mathbb{P}(E_n) &=& \dfrac{1}{9}\prod_{k=1}^{n-1} \dfrac{13}{18} \\
+&=& \dfrac{1}{9} (\dfrac{13}{18})^{n-1}
+\eQe
+Consequently, we obtain
+\eQb
+\sum_{n=1}^{\infty}\mathbb{P}(E_n) &=& \sum_{n=1}^{\infty}
+\dfrac{1}{9} (\dfrac{13}{18})^{n-1} \\
+&=& \dfrac{1}{9} (\dfrac{1}{1 - \frac{13}{18}}) \\
+&=& \dfrac{2}{5}.
+\eQe
+Therefore, the probability that a $5$ occurs first is $\dfrac{2}{5}$. $\qed$
 
 \end{solution}
 
 \bigskip
 
-\begin{question}[5. $\sigma$-algebra generated]
+\begin{question}[5. $\limsup$ and $\liminf$ ]
 \end{question}
 \begin{solution}
-Assume $\emptyset \subsetneq A \subsetneq B \subsetneq \Omega$.
-The $\sigma$-algebra generated by $\{ A, B \}$ can be written as
-\[
-\sigma( \{ A, B \} ) = \{ \emptyset , \> A , \> B , \> A^C, \> B^C, \> A\cup B^C, \> A^C \cap B, \> \Omega \}.
-\]
 \end{solution}
 
-\pagebreak
+\bigskip
 
-\begin{question}[6. Stirling's Formula]
+\begin{question}[6.]
 \end{question}
 \begin{solution}
-We want to compute $\underset{n \to \infty}{\lim} \sum_{k=1}^{n} ln(k)$.
-This can be re-written as $\underset{n \to \infty}{\lim} ln(k!)$. Using the trapezoid approximation,
-we have that 
-\eQb
-ln(n!) \approx \int_{1}^{n} ln(x)dx = nln(n) - n + 1.
-\eQe
 \end{solution}
+
+\bigskip
+
+
 
 \end{document}
