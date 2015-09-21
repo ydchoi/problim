@@ -6,6 +6,7 @@
 \usepackage{mathtools}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{mathrsfs}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 %\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
@@ -75,10 +76,18 @@ This work contains a collection of solutions for selected problems
 of the Basic Probability course of Fall 2015.
 \end{abstract}
 
-\begin{question}[1. Countability]
+\begin{question}[1. Countability and $\sigma$-algebra]
 \end{question}
 \begin{solution}
-Suppose $\Omega$ is a infinite set. Then, there 
+Suppose $\Omega$ is a infinite set. Let $\mathscr{A}$ be a sub-collection of $\mathbb{P}(\Omega)$, 
+defined by 
+\eQb
+\mathscr{A} &=& \{ X \subseteq \Omega \> | \> X \text{ is finite or } X^c \text{ is finite } \}. 
+\eQe
+As $\Omega$ is infinite, there exists an injective map $\phi:\mathbb{N} \to \Omega$. Consider
+the two images of $\phi$: $\phi(2\mathbb{N})$ and $\phi(2\mathbb{N}+1)$, where $2\mathbb{N}$
+denotes the set of evens and $2\mathbb{N}+1$ denotes the set of odds. Observe that 
+
 \end{solution}
 
 \bigskip
@@ -161,6 +170,38 @@ Therefore, the probability that a $5$ occurs first is $\dfrac{2}{5}$. $\qed$
 \begin{question}[5. $\limsup$ and $\liminf$ ]
 \end{question}
 \begin{solution}
+Let $\mathbb{P}$ be a probability measure on $\Omega$ endowed with a 
+$\sigma$-algebra $\mathscr{A}$. We then define $\limsup$ and $\liminf$
+of a sequence of events $\{ A_n \}$, chosen from $\mathscr{A}$ as follow:
+\eQb
+\underset{n \to \infty}{\limsup} \{ A_n \} &=& \cap_{n=1}^{\infty} \cup_{m \geq n} A_n, \\
+\underset{n \to \infty}{\liminf} \{ A_n \} &=& \cup_{n=1}^{\infty} \cap_{m \geq n} A_n. \\
+\eQe
+
+\smallskip
+
+\textbf{(i)} The meaning of the above events can be written as
+\eQb
+\underset{n \to \infty}{\limsup} \{ A_n \} &=& \cap_{n=1}^{\infty} \cup_{m \geq n} A_n \\
+&=& \{ x \in \Omega \> | \> \forall n , \exists m \geq n \text{ such that } x \in A_m \} \\ 
+&=& \{ x \in \Omega \> | \> \text{the outcome } x 
+\text{ appears infinitely often in the event sequence}\}, \\ 
+\underset{n \to \infty}{\liminf} \{ A_n \} &=& \cup_{n=1}^{\infty} \cap_{m \geq n} A_n \\
+&=& \{ x \in \Omega \> | \> \exists n , \forall m \geq n , x \in A_m \}. \\ 
+&=& \{ x \in \Omega \> | 
+\> \text{the outcome } x 
+\text{ does not appear only for a} \\
+&& \text{finite number of events in the sequence} \}. 
+\eQe
+
+\smallskip
+
+\textbf{(ii)} 
+
+\smallskip
+
+\textbf{(iii)} 
+
 \end{solution}
 
 \bigskip
