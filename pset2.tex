@@ -20,6 +20,10 @@
 \providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \providecommand{\pb}[0]{\pagebreak}
 
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
 \newcommand{\E}{\mathrm{E}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\Cov}{\mathrm{Cov}}
@@ -86,7 +90,20 @@ defined by
 \eQe
 As $\Omega$ is infinite, there exists an injective map $\phi:\mathbb{N} \to \Omega$. Consider
 the two images of $\phi$: $\phi(2\mathbb{N})$ and $\phi(2\mathbb{N}+1)$, where $2\mathbb{N}$
-denotes the set of evens and $2\mathbb{N}+1$ denotes the set of odds. Observe that 
+denotes the set of evens and $2\mathbb{N}+1$ denotes the set of odds. Observe that
+$\phi(2\mathbb{N})$ is infinite and $\phi(2\mathbb{N})^c$ is infinite, as $\phi$ is injective.
+Hence, $\phi(2\mathbb{N}) \notin \mathscr{A}$. The image, however, can be expressed in the following
+way:
+\eQb
+\phi(2\mathbb{N}) &=& \bigcup_{k \in 2\mathbb{N}} \{ \phi(k) \},
+\eQe
+which gives that $\phi(2\mathbb{N})$ is a countable union of sets in $\mathscr{A}$, as
+each point set $\{ \phi(k) \} $ is finite and in $\mathscr{A}$.
+Therefore, by the definition of $\sigma$-algebra, we obtain $\phi(2\mathbb{N}) \in \mathscr{A}$.
+This is a contradiction.
+Hence, $\mathscr{A}$, defined by the
+given characterization, is not a $\sigma$-algebra, when
+$\Omega$ is infinite. $\qed$
 
 \end{solution}
 
@@ -110,11 +127,23 @@ as a probability measure assigns any event in the $\sigma$-algebra to some real 
 Hence, $\underset{n \to \infty}{\lim} \mathbb{P}(A_n) = 0$. $\qed$
 \end{solution}
 
-\bigskip
+\pagebreak
 
-\begin{question}[3.]
+\begin{question}[3.Bonferroni Inequalities]
 \end{question}
 \begin{solution}
+Let $\{A_i \}$ be a sequence of events. 
+We wish to prove the following probalistic inequality:
+\eQb
+\mathbb{P}(\bigcup_{i=1}^{n} A_i ) &\geq& \sum_{i=1}^{n} \mathbb{P}(A_i) - \sum_{i < j} 
+\mathbb{P}(A_i \cap A_j).
+\eQe
+We proceed by induction. Let $A_1$ and $A_2$ be two events. Then, by the finite additivity of 
+probability measure, we have
+\eQb
+\mathbb{P}(A_1 \cup A_2) = \mathbb{P}(A_1) + \mathbb{P}(A_2) - \mathbb{P}(A_1 \cap A_2). 
+\eQe
+Hence, the inequality holds for $n=2$ case. Now, assume that the inequality holds for some $k$.
 \end{solution}
 
 \bigskip
@@ -182,11 +211,11 @@ of a sequence of events $\{ A_n \}$, chosen from $\mathscr{A}$ as follow:
 
 \textbf{(i)} The meaning of the above events can be written as
 \eQb
-\underset{n \to \infty}{\limsup} \{ A_n \} &=& \cap_{n=1}^{\infty} \cup_{m \geq n} A_n \\
+\underset{n \to \infty}{\limsup} \{ A_n \} &=& \bigcap_{n=1}^{\infty} \bigcup_{m \geq n} A_n \\
 &=& \{ x \in \Omega \> | \> \forall n , \exists m \geq n \text{ such that } x \in A_m \} \\ 
 &=& \{ x \in \Omega \> | \> \text{the outcome } x 
 \text{ appears infinitely often in the event sequence}\}, \\ 
-\underset{n \to \infty}{\liminf} \{ A_n \} &=& \cup_{n=1}^{\infty} \cap_{m \geq n} A_n \\
+\underset{n \to \infty}{\liminf} \{ A_n \} &=& \bigcup_{n=1}^{\infty} \bigcap_{m \geq n} A_n \\
 &=& \{ x \in \Omega \> | \> \exists n , \forall m \geq n , x \in A_m \}. \\ 
 &=& \{ x \in \Omega \> | 
 \> \text{the outcome } x 
@@ -197,6 +226,37 @@ of a sequence of events $\{ A_n \}$, chosen from $\mathscr{A}$ as follow:
 \smallskip
 
 \textbf{(ii)} 
+Let $\Omega = \mathbb{R}$, and $\mathscr{A}$ is the Borel $\sigma-$algebra. For any $ p \leq 1$,
+we define
+\eQb 
+A_{2p} = {\Big [} -1, 2 + \dfrac{1}{2p}{\Big )}, \> \> A_{2p+1} = {\Big (}-2- 
+\dfrac{1}{2p+1}, 1 {\Big ]}. 
+\eQe
+We first denote the $\limsup$ set as $S$ and $\liminf$ set as $I$. Then, we claim that
+\eQb
+S &=& \underset{n \to \infty}{\limsup} \{ A_n \} = {\Big [} -2, 2 {\Big ]}, \\
+I &=& \underset{n \to \infty}{\liminf} \{ A_n \} = {\Big [} -1, 1 {\Big ]},
+\eQe
+which we denote as $S$ and $I$ respectively.
+
+\smallskip
+
+We first prove that $S = [-2,2]$. Consider $x \in [0,2]$. Observe that for any $m$, $x \in A_{2\ceil{
+\frac{m}{2}}}$, as $[0,2] \subseteq [-1,2+\dfrac{1}{2\ceil{\frac{m}{2}}})$. As $2\ceil{
+\frac{m}{2}} \geq m$, we have $[0,2] \subseteq  S$. Similarly, consider $x \in [-2,0]$.
+Observe that for any $m$, $x \in A_{2\frac{\floor{m}}{2}+1}$, as $[-2,0] \subseteq 
+(-2-\dfrac{1}{2\floor{\frac{m}{2}}+1},1]$. As $2\floor{\frac{m}{2}} \geq m$, we have $[-2,0] 
+\subseteq S$. Suppose now that $x > 2$. Then, by the Archemedian property of real number, 
+there exists an integer $p$ such that $2+\dfrac{1}{2p} < x$. Hence, $x \notin A_k$ for all $k \geq 2p$.
+Therefore, for $x > 2$, $x \notin S$. Analogously, for $x < -2$, $x \notin S$. We have shown that
+$S = [-2,2]$. 
+
+\smallskip
+
+We now show that $I = [-1,1]$. Observe that $[-1,1] \subseteq A_k$ for all positive integer $k$ 
+greater than $1$. Therefore, $[-1,1] \subseteq I$. For $x > 1$, the odd terms do not contain $x$.
+For $x < -1$, the even terms do not contain $x$. Hence, we have shown that
+$I = [-1,1]$ as desired.
 
 \smallskip
 
@@ -206,9 +266,52 @@ of a sequence of events $\{ A_n \}$, chosen from $\mathscr{A}$ as follow:
 
 \bigskip
 
-\begin{question}[6.]
+\begin{question}[6.Zeta Function in Probability]
 \end{question}
 \begin{solution}
+Let $n$ and $m$ be random numbers chosen independently and uniformly on $[[1,N]]$.
+Then, we can characterize $\Omega$, and $\mathscr{A}$, which
+all implicitly depend on $N$ as follow:
+\eQb
+\Omega &=& [[1, N]] \times [[1, N]], \\
+\mathscr{A} &=& 2^{\Omega},
+\eQe
+where $2^{\Omega}$ denotes the power set of $\Omega$. Furthermore, 
+with the uniform probability assumption, we can define the 
+probability measure on the above measurable space $\mathbb{P}: \mathscr{A} \to [0,1]$ by
+\eQb
+\mathbb{P}(A) = \dfrac{|A|}{N^2} \text{ for } A \in \mathscr{A}.
+\eQe
+Now, define set of events $A_p$ as follow:
+\[
+\{ x \in \Omega \> | \> \text{both n and m have a prime } p \text{ as its factor} \}.
+\]
+Notice that the $(n,m) = 1$ event, for a fixed $N$, can be expressed in terms of $A_p$s as
+\eQb
+\mathbb{P}((n,m) = 1) = \mathbb{P}(\bigcap_{p \in \bar{P}}A_p^c),
+\eQe
+where $\bar{P}$ denotes the set of primes not greater than $N$. As $\{ A_p \}$ collection forms
+an independent collection, arising from the uniform probability assumption and independence,
+the probability can be factorized into
+\eQb
+\mathbb{P}((n,m) = 1) &=& \prod_{p \in \bar{P}} \mathbb{P}(A_p^c),
+\eQe
+with $\mathbb{P}(A_p^c) = 1 - \frac{\floor{\frac{N}{p}}}{p}^2$.
+Hence, we can re-write the above equation as
+\eQb
+\mathbb{P}((n,m) = 1) &=& 
+\prod_{p \in \bar{P}} 1 -\frac{\floor{\frac{N}{p}}}{p}^2. 
+\eQe
+Now, as $N \to \infty$, we have 
+\eQb
+\mathbb{P}((n,m) = 1)_{N \to \infty} &=& 
+\lim_{n \to \infty}\prod_{p \in \bar{P}} 1 -\frac{\floor{\frac{N}{p}}}{p}^2 \\ 
+&=& \prod_{p \in P} 1 - \dfrac{1}{p^2} \\
+&=& \zeta(2)^{-1} \\
+&=& \dfrac{6}{\pi^2}, \\
+\eQe
+where $P$ denotes the set of primes in the second equation, as desired. $\qed$
+
 \end{solution}
 
 \bigskip
