@@ -1,0 +1,295 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips14submit_e,times}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathrsfs}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\def\eQb#1\eQe{\begin{eqnarray*}#1\end{eqnarray*}}
+\def\eQnb#1\eQne{\begin{eqnarray}#1\end{eqnarray}}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\providecommand{\pb}[0]{\pagebreak}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\def\Qb#1\Qe{\begin{question}#1\end{question}}
+\def\Sb#1\Se{\begin{solution}#1\end{solution}}
+
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newtheoremstyle{quest}{\topsep}{\topsep}{}{}{\bfseries}{}{ }{\thmname{#1}\thmnote{ #3}.}
+\theoremstyle{quest}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{question}{Question}
+\newtheorem*{preposition}{Preposition}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{challengeproblem}{Challenge Problem}
+\newtheorem*{solution}{Solution}
+\newtheorem*{remark}{Remark}
+\usepackage{verbatimbox}
+\usepackage{listings}
+\title{Basic Probability: \\
+Problem Set III}
+
+
+\author{
+Youngduck Choi \\
+CILVR Lab \\
+New York University\\
+\texttt{yc1104@nyu.edu} \\
+}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+This work contains a collection of solutions for selected problems 
+of the Basic Probability course of Fall 2015.
+\end{abstract}
+
+\bigskip
+
+\begin{question}[1. Limit and Conditional Probability]
+\end{question}
+\begin{solution}
+We first claim that if $A_n \to A$ and $B_n \to B$, then $A_n \cap B_n \to A \cap B$.
+Let $w \in \Omega$. As $A_n \to A$, there exists $N_A$ such that 
+\eQb
+1_{A_n}(w) &=& 1_{A}(w) \>\> \text{ for } \>\>  n \geq N_A. 
+\eQe
+Similarly, as $B_n \to B$, there exists $N_B$ such that 
+\eQb
+1_{B_n}(w) &=& 1_{B}(w) \>\> \text{ for } \>\>  n \geq N_B. 
+\eQe
+Take $N^* = \mathrm{max}(N_A,N_B)$. Then, for $n \geq N^*$, we have
+\eQb
+1_{A_n \cap B_n}(w) &=& 1_{A_n}(w) + 1_{B_n}(w) + 1_{A_n}(w)1_{B_n}(w) \\
+&=& 1_A(w) + 1_B(w) + 1_A(w)1_B(w) \\
+&=& 1_{A \cap B}(w).
+\eQe 
+Since $w$ was arbitrary, we have shown that $A_n \cap B_n \to A \cap B$.
+
+\smallskip
+
+Recall the following theorem established earlier in the class:
+let $P$ be a probability measure, and $A_n$ be a sequence of events in $\mathscr{A}$ which
+converge to $A$. Then, $A \in \mathscr{A}$ and $\lim_{n \to \infty} \mathbb{P}(A_n) = 
+\mathbb{P}(A)$. Combining the theorem with the above result we have that
+if $A_n \to A$ and $B_n \to B$, we have
+\eQb
+\lim_{n \to \infty}\mathbb{P}(A_n \cap B_n) = \mathbb{P}(A \cap B). 
+\eQe
+
+From this point on, we assume that $\mathbb{P}(B) > 0$ and $\mathbb{P}(B_n) > 0$ for all $n$,
+so that the conditional probabilities are well-defined. \\
+
+\smallskip
+
+\textbf{(i)} As $A_n \to A$ and $B \to B$, by the established result, we obtain
+\eQb
+\lim_{n \to \infty} \mathbb{P}(A_n \cap B) = \mathbb{P}(A \cap B) \> \text{ and } 
+\lim_{n \to \infty}\mathbb{P}(B) = \mathbb{P}(B).
+\eQe
+Hence, by the limit rule, we have that the limit of the given term exists and 
+\eQb
+\lim_{n \to \infty} \dfrac{\mathbb{P}(A_n \cap B)}{\mathbb{P}(B)} = 
+\dfrac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} = \mathbb{P}(A|B).
+\eQe
+
+\pagebreak
+ 
+\textbf{(ii)} As $A \to A$ and $B_n \to B$, by the established result, we obtain
+\eQb
+\lim_{n \to \infty}\mathbb{P}(A \cap B_n) = \mathbb{P}(A \cap B) \> \text{ and }
+\lim_{n \to \infty} \mathbb{P}(B_n) = \mathbb{P}(B). 
+\eQe
+Hence, by the limit rule, we have that the limit of the given term exists and 
+\eQb
+\lim_{n \to \infty} \dfrac{\mathbb{P}(A \cap B_n)}{\mathbb{P}(B_n)} = 
+\dfrac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} = \mathbb{P}(A|B).
+\eQe
+
+\smallskip
+
+\textbf{(iii)} As $A_n \to A$ and $B_n \to B$, by the established result, we obtain
+\eQb
+\lim_{n \to \infty} \mathbb{P}(A_n \cap B_n) = \mathbb{P}(A \cap B) \> \text{ and } 
+\lim_{n \to \infty}\mathbb{P}(B_n) = \mathbb{P}(B).
+\eQe
+Hence, by the limit rule, we have that the limit of the given term exists and 
+\eQb
+\lim_{n \to \infty} \dfrac{\mathbb{P}(A_n \cap B_n)}{\mathbb{P}(B_n)} &=& 
+\dfrac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} = \mathbb{P}(A|B),
+\eQe
+which completes the proof. $\qed$
+\end{solution}
+
+\bigskip
+
+\begin{question}[2. Conditional Probability]
+\end{question}
+\begin{solution}
+As $\mathbb{P}(B \cap C) \neq 0$, by the definition of conditional probability, we have
+\eQb
+\mathbb{P}(A | B \cap C) &=& \dfrac{\mathbb{P}(A \cap B \cap C)}{\mathbb{P}(B \cap C)}.
+\eQe
+As $\{ A, B, C\}$ are mutually independent events, we obtain
+\eQb
+\mathbb{P}(A | B \cap C) &=& \dfrac{\mathbb{P}(A) \mathbb{P}(B) \mathbb{P}(C)}{\mathbb{P}(B)
+\mathbb{P}(C)}\\
+&=& \mathbb{P}(A),
+\eQe
+as desired. $\qed$
+
+\end{solution}
+
+
+\bigskip
+
+\begin{question}[3. Conditional Probability]
+\end{question}
+\begin{solution}
+Given the assumption, we can compute the probability of $\mathbb{P}(A)$ by 
+using the conditional probability as  
+\eQb
+\mathbb{P}(A) &=& \mathbb{P}(A|G=M)\mathbb{P}(G=M) + \mathbb{P}(A|G=F)\mathbb{P}(G=F).
+\eQe
+Substituting the givens, we have
+\eQb
+\mathbb{P}(A) &=& 0.3\cdot 0.5 0.2\cdot 0.5 \\ 
+&=& 0.25.
+\eQe
+Similarly, we can express $\mathbb{P}(B)$ as 
+\eQb
+\mathbb{P}(B) &=& \mathbb{P}(B|G=M)\mathbb{P}(G=M) + \mathbb{P}(B|G=F)\mathbb{P}(G=F).
+\eQe
+As the claims are made independently each year, by substituting the givens, we have
+\eQb
+\mathbb{P}(B) &=& 0.3^2 \cdot 0.5 + 0.2^2\cdot 0.5 \\
+&=& 0.065.
+\eQe
+Therefore, we have that
+\eQb
+\mathbb{P}(B|A) &=& \dfrac{\mathbb{P}(B \cap A)}{\mathbb{P}(A)} \\
+&=& \dfrac{\mathbb{P}(B)}{\mathbb{P}(C)} \\
+&=& \dfrac{0.0065}{0.25} \\
+&=& 0.26. \\
+\eQe
+The independence assumption was used to compute the probability of the event $B$. It does not
+give an explicit information about the conditional probability $\mathbb{P}(B|A)$ without the 
+computation. 
+As the head of the insurance company, one should minimize the probability of filling a complaint.
+Hence, one would prefer one who did not have a claim in the previous year, as the computation shows.
+$\qed$
+\end{solution}
+\bigskip
+
+\begin{question}[4. Genetics]
+\end{question}
+\begin{solution}
+
+\end{solution}
+\bigskip
+
+\begin{question}[5. The Moments of Poisson Distribution]
+\end{question}
+\begin{solution} Let $X$ be a random variable with Poisson distribution with
+parameter $\lambda > 0$. We proceed to compute the expectation $\mathbb{E}[X]$.
+By the definition of expectation, we have
+\eQb
+\mathbb{E}[X] &=& \sum_{k=0}^{\infty}
+k\dfrac{\lambda^k e^{-\lambda}}{k!} \\
+&=& \sum_{k=1}^{\infty} k\dfrac{\lambda^k e^{-\lambda}}{k!}, \\
+\eQe
+as the $0$-th term vanishes. Pulling out the $\lambda e^{-\lambda}$, we obtain
+\eQb
+\mathbb{E}[X] 
+&=& \lambda e^{-\lambda} 
+\sum_{k=1}^{\infty} \dfrac{\lambda^{k-1}}{(k-1)!} \\
+&=& \lambda e^{-\lambda} 
+\sum_{p=0}^{\infty} \dfrac{\lambda^{p}}{p!}, \\
+\eQe
+where $p = k-1$. As the series converges to $e^{\lambda}$, we have
+\eQb
+\mathbb{E}[X] &=& \lambda.
+\eQe
+We now compute the variance $\mathrm{Var}[X]$. By the definition of variance, we have
+\eQb
+\mathrm{Var}[X] &=& \mathbb{E}[X^2] - \mathbb{E}[X]^2.
+\eQe
+Again by the definition of expectation, we have
+\eQb
+\mathbb{E}[X^2] &=& 
+\eQe
+\end{solution}
+\bigskip
+
+\begin{question}[6. Memoryless Property of the Geometric Distribution]
+\end{question}
+\begin{solution}
+We first compute an explicit formula for the $\mathbb{P}(X > k)$ term with an arbitrary $k \geq 0$.
+By the definition of the geometric random variable and geometric series formula, we have
+\eQb
+\mathbb{P}(X > k) &=& 1 - \sum_{i=0}^{k} \mathbb{P}(X = i) \\
+&=& 1 - \sum_{i=0}^{k} (1-q)^{i}q \\
+&=& 1 - q \sum_{i=0}^{k} (1-q)^{i} \\
+&=& 1 - q\dfrac{1 - (1-q)^{k+1}}{q} \\
+&=& (1-q)^{k+1}
+\eQe
+By the above formula, we can write the LHS as
+\eQb
+\mathbb{P}(X > i + j | X \geq i) &=& \dfrac{\mathbb{P}(X > i + j , X > i)}{\mathbb{P}(X \geq i)} \\
+&=& \dfrac{\mathbb{P}(X > i + j)}{\mathbb{P}(X > i - 1)} \\
+&=& \dfrac{(1-q)^{i+j+1}}{(1-q)^{i}} \\
+&=& (1-q)^{j+1},
+\eQe
+for $i,j > 0$.
+Again, by the above formula, we can write the RHS as 
+\eQb
+\mathbb{P}(X > j) &=& (1-q)^{j+1},
+\eQe
+for $i, j > 0$.
+Hence, we have shown that the given memoryless property hold for $i,j > 0$. $\qed$
+
+\end{solution}
+
+
+\end{document}
+
+
+
+
+
