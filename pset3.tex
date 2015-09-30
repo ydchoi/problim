@@ -96,8 +96,8 @@ Similarly, as $B_n \to B$, there exists $N_B$ such that
 \eQe
 Take $N^* = \mathrm{max}(N_A,N_B)$. Then, for $n \geq N^*$, we have
 \eQb
-1_{A_n \cap B_n}(w) &=& 1_{A_n}(w) + 1_{B_n}(w) + 1_{A_n}(w)1_{B_n}(w) \\
-&=& 1_A(w) + 1_B(w) + 1_A(w)1_B(w) \\
+1_{A_n \cap B_n}(w) &=& 1_{A_n}(w)1_{B_n}(w) \\
+&=& 1_{A}(w) 1_{B}(w) \\
 &=& 1_{A \cap B}(w).
 \eQe 
 Since $w$ was arbitrary, we have shown that $A_n \cap B_n \to A \cap B$.
@@ -220,8 +220,30 @@ $\qed$
 \begin{question}[4. Genetics]
 \end{question}
 \begin{solution}
-
+We are given that a parent passes on one of its alleles, chosen at 
+random uniformly to its child, and the genotype of the child combines
+alleles from both parents. Furthermore, the probability applies
+homogenously to the entire population. We then can write a probability
+of a parent passing on $A$ allele as 
+\eQb
+\mathbb{P}(A) &=& P.
+\eQe
+Then, by the definition of probability, we have
+\eQb
+\mathbb{P}(a) &=& 1 - P = Q,
+\eQe
+where $P + Q = 1$, as there are only two options. Hence, the probabilities 
+that two parents passing on particular alleles are 
+\eQb
+\mathbb{P}(AA) = \mathbb{P}(A)\mathbb{P}(A) = P^2 \\
+\mathbb{P}(Aa) = 2\mathbb{P}(A)\mathbb{P}(a) = 2PQ \\
+\mathbb{P}(aa) = \mathbb{P}(a)\mathbb{P}(a) = Q^2,
+\eQe 
+as desired. Recall that $P + Q = 1$. Hence, the $p$, $q$, $r$ terms,
+which are the probabilities computed above, only depend on one parameter
+$P$. $\qed$
 \end{solution}
+
 \bigskip
 
 \begin{question}[5. The Moments of Poisson Distribution]
@@ -252,8 +274,46 @@ We now compute the variance $\mathrm{Var}[X]$. By the definition of variance, we
 \eQe
 Again by the definition of expectation, we have
 \eQb
-\mathbb{E}[X^2] &=& 
+\mathbb{E}[X^2] &=& \sum_{k=0}^{\infty} k^2 \dfrac{\lambda^k e^{-\lambda}}{k!} \\
+&=& \sum_{k=1}^{\infty} k^2 \dfrac{\lambda^k e^{-\lambda}}{k!}, 
 \eQe
+as the $0$ term vanishes. With a series of simple algebraic manipulation, including
+the taylor series expansion for exponential as above, we have
+\eQb
+\mathbb{E}[X^2] &=& \sum_{k=1}^{\infty} k^2 \dfrac{\lambda^k e^{-\lambda}}{k!} \\
+&=& \lambda e^{-\lambda}\sum_{k=1}^{\infty} k \dfrac{\lambda^{k-1}}{(k-1)!} \\
+&=& \lambda e^{-\lambda}(\sum_{k=1}^{\infty} \dfrac{\lambda^{k-1}}{(k-1)!}
++ \sum_{k=1}^{\infty} (k-1)\dfrac{\lambda^{k-1}}{(k-1)!}) \\
+&=& \lambda e^{-\lambda}(\sum_{k=1}^{\infty} \dfrac{\lambda^{k-1}}{(k-1)!}
++ \lambda \sum_{k=2}^{\infty} \dfrac{\lambda^{k-2}}{(k-2)!}) \\
+&=& \lambda e^{-\lambda} (e^{\lambda} + \lambda e^{\lambda}) \\
+&=& \lambda^2 + \lambda.
+\eQe
+Consequently, it follows that
+\eQb
+\mathrm{Var}[X] &=& \lambda.
+\eQe
+
+\smallskip
+
+Now, we compute the term $\mathbb{E}[X(X-1)...(X-K+1)]$ for any $k \in \mathbb{N}$.
+Note that the above term can be written as $\mathbb{E}\left[ \dfrac{X!}{(X-K)!} \right]$. Now, we can
+write the expectation of the $\dfrac{X!}{(X-K)!}$ random variable as
+\eQb
+\mathbb{E}\left[ \dfrac{X!}{(X-K)!} \right] &=& \sum_{p=K}^{\infty}
+\dfrac{p!}{(p-K)!} \dfrac{\lambda^{p}e^{-\lambda}}{p!} \\
+&=& e^{-\lambda}\lambda^{K} \sum_{p = K}^{\infty} \dfrac{\lambda^{(p-K)}}{(p-K)!} \\
+&=& \lambda^K.
+\eQe
+
+\smallskip
+The $k$th moment of the distribution can be written as
+\eQb
+\mathbb{E}[X^k] &=& \sum_{i=1}^{K} \lambda^i S(K,i),
+\eQe
+where $S(K,i)$ denotes the Striling number of second kind, which computes the number of unlabelled
+partitions out of labeled objects. We esssentially get the number of partions for the falling factorial
+of size $i$. $\qed$
 \end{solution}
 \bigskip
 
