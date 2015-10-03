@@ -85,13 +85,70 @@ of the Basic Probability course of Fall 2015.
 \begin{question}[1]
 \end{question}
 \begin{solution}
+We are given that
+\eQb
+P(M) = 0.5 \>\> &\text{ and }& \>\> P(F) = 0.5 \\
+P(C|M) = 0.03 \>\> &\text{ and }& \>\> P(C|F) = 0.05, \\
+\eQe
+where $C$, $M$ and $F$ are events corresponding to a chosen person
+being colorblind, male
+and female respectively. Note that $M$ and $F$ form a partition
+of the sample space. 
+Now, by the Bayes' theorem, we have
+\eQb
+P(M|C) &=& \dfrac{P(C|M)P(M)}{P(C)}. \\
+\eQe
+As $M$ and $F$ is a partition of the sample space, we have
+\eQb
+P(M|C) &=& \dfrac{P(C|M)P(M)}{P(C|M)P(M) + P(F|M)P(M)}.
+\eQe
+Therefore, substituting the givens yields
+\eQb
+P(M|C) &=& \dfrac{0.03 \cdot 0.5}{0.03 \cdot 0.5 + 0.05 \cdot 0.5} \\
+&=& 0.375.
+\eQe
+If there are twice many males over females, we have
+\eQb
+P(M|C) &=& \dfrac{0.03 \cdot \frac{2}{3}}{0.03 \cdot \frac{2}{3}
++ 0.05 \cdot \frac{1}{3}} \\
+&\approx& 0.545.
+\eQe
+This completes the computation. $\qed$
+
 \end{solution}
 
-\bigskip
+\pagebreak
 
 \begin{question}[2]
 \end{question}
 \begin{solution}
+We have an experiment of selecting a coin from a box of three coins at
+random and flipping the selected coin. Let $C_1, C_2$ and $C_3$ be
+events corresponding to a chosen coin being the coin $1$, coin $2$
+and coin $3$. Let $H$ be an event that a head shows. Then,
+we are given that
+\eQb
+P(C_1) = \dfrac{1}{3} \>\> &\text{ and }& P(H|C_1) = 1 \\
+P(C_2) = \dfrac{1}{3} \>\> &\text{ and }& P(H|C_2) = 0.5 \\
+P(C_3) = \dfrac{1}{3} \>\> &\text{ and }& P(H|C_3) = 0.65.
+\eQe
+By the Bayes' theorem, we have
+\eQb
+P(C_1|H) &=& \dfrac{P(H|C_1)P(C_1)}{P(H)}.
+\eQe
+As $C_1$, $C_2$ and $C_3$ form a partition of the sample space,
+we have
+\eQb
+P(C_1|H) &=& \dfrac{P(H|C_1)P(C_1)}
+{P(H|C_1)P(C_1) + P(H|C_2)P(C_2) + P(H|C_3)P(C_3)} \\
+&=& \dfrac{1 \cdot \frac{1}{3}}{1 \cdot \frac{1}{3} + 
+0.5 \cdot \frac{1}{3} + 0.65 \cdot \frac{1}{3}} \\
+&\approx& 0.465.
+\eQe
+Therefore, the probability that it was the two-headed coin, given that
+the throw resulted in a head is approximately $0.465$. $\qed$
+
+
 \end{solution}
 
 \bigskip
@@ -99,6 +156,27 @@ of the Basic Probability course of Fall 2015.
 \begin{question}[3]
 \end{question}
 \begin{solution}
+Given the distribution function $F$, by definition, we can write 
+the probability of an event $(a,b)$ as
+\eQb
+P((a,b)) = F(b) - F(a).
+\eQe
+Therefore, it follows that
+\eQb
+P((-1/2,1/2)) &=& F(1/2) - F(-1/2) \\
+&=& \dfrac{1}{4} - 0 \\
+&=& \dfrac{1}{4} \\
+P((1/2,3/2)) &=& F(3/2) - F(-1/2) \\
+&=& \dfrac{3}{4} - 0 \\
+&=& \dfrac{3}{4} \\
+P((2/3,5/2)) &=& F(5/2) - F(2/3) \\
+&=& 1 - \dfrac{1}{4} \\
+&=& \dfrac{3}{4} \\
+P((3,\infty)) &=& F(\infty) - F(3) \\ 
+&=& 1 - 1 \\
+&=& 0.
+\eQe
+This completes the computations. $\qed$
 \end{solution}
 
 \bigskip
@@ -106,28 +184,57 @@ of the Basic Probability course of Fall 2015.
 \begin{question}[4]
 \end{question}
 \begin{solution}
+We wish to compute the factorial moment of the geometric distribution.
+Writing out definition of the factorial moment and simplifying with
+geometric series and $r$th derivative, we have
+\eQb
+\mathbb{E}\left[ \dfrac{X!}{(X-r)!} \right]
+&=& \sum_{k=r}^{\infty} \dfrac{k!}{(k-r)!}(1-p)^k p \\
+&=& p(1-p)^r\sum_{k=r}^{\infty} \dfrac{k!}{(k-r)!}(1-p)^{k-r} \\
+&=& p(1-p)^r (-1)^r \dfrac{d^r}{d_p^r} \sum_{k=0}^{\infty} 
+(1-p)^k \\
+&=& p(1-p)^r (-1)^r \dfrac{d^r}{d_p^r} \dfrac{1}{p} \\
+&=& p(1-p)^r (-1)^r (-1)^r r! \dfrac{1}{p^{r+1}} \\
+&=& \dfrac{r!(1-p)^r}{p^r}, 
+\eQe
+as desired. $\qed$
 \end{solution}
-\end{document}
-
 \bigskip
 
 \begin{question}[5]
 \end{question}
 \begin{solution}
-\end{solution}
-
-\bigskip
-
-\begin{question}[6]
-\end{question}
-\begin{solution}
+Let $X$ have a binomial distribution with parameters $(p,n)$. 
+Let $p \in (0,1)$. We proceed by mathematical induction. 
+For the $n=1$, we have
+\eQb
+\dfrac{1}{2}(1+(1-2p)^1) &=& \dfrac{1}{2}(2-2p) \\
+&=& (1-p) \\
+&=& {1 \choose 0} p^0(1-p)^1
+\eQe
+Therefore the base case holds. Assume that the formula holds for $n$.
+Let $X_n$ and $X_{n+1}$ be the binomial distribution with $n$ and $n+1$
+parameters respectively.
+Observe the following recurrence relation:
+\eQb
+P(X_{n+1}=even) = P(X_{n}=even)(1-p) + P(X_{n}=odd)p,
+\eQe
+which can be seen by partitioning the probability by the outcome of
+the $n+1$ trial. If the last trial is a success, then the number of successes
+upto $n$ must be odd. Similarly, if the last trial is a failure, then
+the number of successes upto $n$ must be even. 
+Substituting the inductive hypothesis into the above recurrence relation
+yields
+\eQb
+&=& \dfrac{1}{2}(1+(1-2p)^n)(1-p) + (1-\dfrac{1}{2}(1+(1-2p)^n)p \\
+&=& (\dfrac{1}{2} + \dfrac{1}{2}(1-2p)^n)(1-p) 
++ (\dfrac{1}{2} - \dfrac{1}{2}(1-2p)^n)p \\
+&=& \dfrac{1}{2} + \dfrac{1}{2}(1-2p)^n(1-2p) \\
+&=& \dfrac{1}{2}(1 + (1-2p)^{n+1}), \\
+\eQe
+which completes the induction. Therefore, we have shown that
+$X$ is even with probability $\dfrac{1}{2}(1 + (1-2p)^n)$.
+$\qed$
 \end{solution}
 
 \end{document}
-
-
-
-
-
-
-
