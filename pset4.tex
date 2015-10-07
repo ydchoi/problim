@@ -237,4 +237,41 @@ $X$ is even with probability $\dfrac{1}{2}(1 + (1-2p)^n)$.
 $\qed$
 \end{solution}
 
+\pagebreak
+
+\begin{question}[6]
+\end{question}
+\begin{solution}
+Let $g:[0,\infty ) \to [0,\infty)$ be strictly increasing and 
+non-negative. Let $X$ be a real-valued random variable on a countable
+space $\Omega$,
+and $P$ be the law of $X$.
+Let $A$ denote the following set : $ A = \{ \omega \in \Omega \> | \> 
+|X(\omega)| \geq a \} $.
+By the construction of the set $A$, we have
+\eQb
+|X(\omega)| \geq a1_{A}(\omega),
+\eQe
+for all $\omega \in \Omega$. Since $g$ is strictly increasing and defined
+on non-negative reals, we have
+\eQb
+g(|X(\omega)|) &\geq& g(a1_{A}(\omega)) \\
+&\geq& g(a)1_{A}(\omega),
+\eQe 
+for all $\omega \in \Omega$. Now, as the inequality holds for all $\omega
+\in \Omega$, summing over all $\omega \in \Omega$, we have
+\eQb
+\sum_{\omega \in \Omega} g(|X(w)|) &\geq& \sum_{\omega \in \Omega}
+g(a)1_{A}(w) \\
+&=& g(a)\sum_{\omega \in \Omega} 1_{A}(w) \\
+&=& g(a)P(A).
+\eQe 
+Observe that LHS is an expectation of $g(|X|)$ and $g(a) > 0$ as $a > 0$.
+Therefore, rewriting and rearranging the terms yield
+\eQb
+P(|X| \geq a) &\leq& \dfrac{\mathbb{E}[g(|X|)]}{g(a)}, \\
+\eQe
+as desired. $\qed$
+\end{solution}
+
 \end{document}
