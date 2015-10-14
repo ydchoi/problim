@@ -1,0 +1,178 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips14submit_e,times}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathrsfs}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\def\eQb#1\eQe{\begin{eqnarray*}#1\end{eqnarray*}}
+\def\eQnb#1\eQne{\begin{eqnarray}#1\end{eqnarray}}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\providecommand{\pb}[0]{\pagebreak}
+
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+
+\def\Qb#1\Qe{\begin{question}#1\end{question}}
+\def\Sb#1\Se{\begin{solution}#1\end{solution}}
+
+\newenvironment{claim}[1]{\par\noindent\underline{Claim:}\space#1}{}
+\newtheoremstyle{quest}{\topsep}{\topsep}{}{}{\bfseries}{}{ }{\thmname{#1}\thmnote{ #3}.}
+\theoremstyle{quest}
+\newtheorem*{definition}{Definition}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{question}{Question}
+\newtheorem*{preposition}{Preposition}
+\newtheorem*{exercise}{Exercise}
+\newtheorem*{challengeproblem}{Challenge Problem}
+\newtheorem*{solution}{Solution}
+\newtheorem*{remark}{Remark}
+\usepackage{verbatimbox}
+\usepackage{listings}
+\title{Basic Probability: \\
+Problem Set V}
+
+
+\author{
+Youngduck Choi \\
+CILVR Lab \\
+New York University\\
+\texttt{yc1104@nyu.edu} \\
+}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to \LaTeX{} to determine where to break
+% the lines. Using \AND forces a linebreak at that point. So, if \LaTeX{}
+% puts 3 of 4 authors names on the first line, and the last on the second
+% line, try using \AND instead of \And before the third author name.
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+
+\maketitle
+
+\begin{abstract}
+This work contains a collection of solutions for selected problems 
+of the Basic Probability course of Fall 2015.
+\end{abstract}
+
+\bigskip
+
+\begin{question}[1]
+\end{question}
+\begin{solution}
+\textbf{(i)} By the definition of Dirac Distribution, we have
+\eQb
+E[X] &=& 
+\eQe
+
+\textbf{(ii)} By definition of Poisson Distribution, we have
+\eQb
+E[X] &=& \sum_{k=0}^{\infty} k\dfrac{1}{k!}\lambda^k e^{-\lambda} \\
+&=& \lambda e^{-\lambda} \sum_{k=0}^{\infty} k\dfrac{1}{k!} \lambda^{k-1} \\
+&=& \lambda,
+\eQe
+as expected. $\qed$
+\end{solution}
+
+\bigskip
+
+\begin{question}[2]
+\end{question}
+\begin{solution}
+Let $X$ be uniformly distributed on $[0,1]$. Then, the distribution
+of $X$ can be written as 
+\eQb
+F_X(x) = 
+ \begin{cases} 0 \>\>\> \mbox{for } x \leq 0  \\ 
+x \>\>\> \mbox{for } x \in (0,1) \\
+1 \>\>\> \mbox{for } x \geq 1. \\
+\end{cases} 
+\eQe
+Now, consider the random variable $logX$.
+Then, the distribution of $logX$ can be written as
+\eQb
+F_{logX}(x) = 
+ \begin{cases} 
+0 \>\>\> \mbox{for } x \in (-\infty,0) \\
+log(x) \>\>\> \mbox{for } x \in (0,e) \\
+1 \>\>\> \mbox{for } x \geq e. \\
+\end{cases} 
+\eQe
+\end{solution}
+
+\bigskip
+
+\begin{question}[3]
+\end{question}
+\begin{solution}
+Let $X$ be a standard Gaussian random variable. The density then
+can be written as
+\eQb
+f_X(x) = \dfrac{1}{2\pi}e^{-x^2}.
+\eQe
+Notice that for the $\dfrac{1}{X^2}$ random variable, the density
+can be written as
+\eQb
+f_{\frac{1}{X^2}}(x) &=& f_{X}(\dfrac{1}{\sqrt{x}}) 
++ f_{X}(-\dfrac{1}{\sqrt{x}}) \\
+&=& \dfrac{1}{\pi}e^{\frac{1}{x}}, 
+\eQe 
+as desired. $\qed$
+
+\end{solution}
+
+\bigskip
+
+\begin{question}[4]
+\end{question}
+\begin{solution}
+\textbf{(i)} We have $\Omega = \{H,T \}^N$, $\mathscr{A} = 2^{\Omega}$,
+and $\mathbb{P}:\mathscr{A} \to [0,1]$ such that 
+$\mathbb{P}(A) = \dfrac{|A|}{2^N}$, for any $A \in \mathscr{A}$.
+
+\smallskip
+
+\textbf{(ii)} Define $A_n$ be a sequence of events such that
+the pattern $(H,H,T,H,T,H,H)$ occurs with the $n$ toss experiment,
+and $p(A_n)$ be the probability of $A_n$. Observe that we can identify
+an event $L_n$ where 
+$(H,H,T,H,T,H,H)$ occurring from the $1$st index to the $7$th
+index with the $n$ toss experiment precisely. The probability of
+such event is $\dfrac{2^{n-7}}{2^n}$ for $n \geq 7$. Observe that
+$\lim_{n \to \infty} p(L_n) = 1$. Since $L_n$ is a subset of $A_n$,
+by the monotonicity property of probability measure, we have
+$p(L_n) \leq p(A_n) \leq 1$ for all $n$. Therefore, by the Squeeze 
+Theorem, we have that $\lim_{n \to \infty} p(A_n) = 1$. $\qed$ 
+ 
+
+\end{solution}
+
+
+
+\end{document}
+
