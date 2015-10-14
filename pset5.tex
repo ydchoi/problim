@@ -85,10 +85,16 @@ of the Basic Probability course of Fall 2015.
 \begin{question}[1]
 \end{question}
 \begin{solution}
-\textbf{(i)} By the definition of Dirac Distribution, we have
+\textbf{(i)} By the definition of Dirac Distribution and the linearity, we have
 \eQb
-E[X] &=& 
+E[X] &=& \int_{-\infty}^{\infty} xf_{X}(x) dx \\
+&=& \int_{-\infty}^{\infty} x(p\delta_a(x)) + q\delta_b(x))dx \\ 
+&=& p\int_{-\infty}^{\infty} x\delta_a(x)) dx + q\int_{-\infty}^{\infty} x\delta_b(x) dx \\
+&=& pa + qb,
 \eQe
+as expected.
+
+\smallskip
 
 \textbf{(ii)} By definition of Poisson Distribution, we have
 \eQb
@@ -113,16 +119,20 @@ x \>\>\> \mbox{for } x \in (0,1) \\
 1 \>\>\> \mbox{for } x \geq 1. \\
 \end{cases} 
 \eQe
-Now, consider the random variable $logX$.
-Then, the distribution of $logX$ can be written as
+Now, consider the random variable $-\lambda \log X$, for $\lambda > 0$. 
+Observe that for $ x > 0$,
 \eQb
-F_{logX}(x) = 
+-\lambda\log(y) \leq x \iff y \geq  e^{-\frac{x}{\lambda}}.
+\eQe
+Consequently, the distribution of $-\lambda \log X$ can be written as
+\eQb
+F_{-\lambda \log X}(x) = 
  \begin{cases} 
 0 \>\>\> \mbox{for } x \in (-\infty,0) \\
-log(x) \>\>\> \mbox{for } x \in (0,e) \\
-1 \>\>\> \mbox{for } x \geq e. \\
-\end{cases} 
+1 - e^{-\lambda x} \>\>\> \mbox{for } x \in [0,\infty) \\
+\end{cases} ,
 \eQe
+which is precisely the exponential distribution as desired. $\qed$
 \end{solution}
 
 \bigskip
@@ -172,6 +182,24 @@ Theorem, we have that $\lim_{n \to \infty} p(A_n) = 1$. $\qed$
 
 \end{solution}
 
+\bigskip
+
+\begin{question}[5]
+\end{question}
+\begin{solution}
+
+\end{solution}
+
+\bigskip
+
+\begin{question}[6]
+\end{question}
+\begin{solution}
+As $c > 0$ and $\delta > 0$, by the Markov inequality, we have
+\eQb
+P(|X| > \delta) &\leq& \dfrac{E[e^{\lambda |X|}]}{e^{\lambda \delta}}
+\eQe
+\end{solution}
 
 
 \end{document}
