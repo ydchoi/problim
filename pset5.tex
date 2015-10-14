@@ -187,18 +187,57 @@ Theorem, we have that $\lim_{n \to \infty} p(A_n) = 1$. $\qed$
 \begin{question}[5]
 \end{question}
 \begin{solution}
-
+We have that $X$ is in $\mathscr{L}^1(\Omega, \mathscr{A}, P)$. 
+Observe that $X$ dominates $\{X 1_{A_n}\}$. Fix $\epsilon > 0$.
+It follows that
+\eQb
+0 \leq 
+P(\{ w \in \Omega | |X1_{A_n}(w) - 0(w)| > \epsilon\} ) &\leq& P(A_n), \\   
+\eQe
+for all $n$.
+Since $P(A_n) \to 0$, by the Squeeze Theorem, we have 
+\eQb
+P(\{ |X1_{A_n} - 0| \} > \epsilon ) \to 0. 
+\eQe
+Since $\epsilon$ was arbitrary, $X1_{A_n} \to 0$ in measure. Therefore,
+by the Dominated Convergence Theorem, we have
+\eQb
+E[X1_{A_n}] \to 0,
+\eQe 
+as $n \to \infty$. $\qed$
 \end{solution}
 
-\bigskip
+\pagebreak
 
 \begin{question}[6]
 \end{question}
 \begin{solution}
 As $c > 0$ and $\delta > 0$, by the Markov inequality, we have
 \eQb
-P(|X| > \delta) &\leq& \dfrac{E[e^{\lambda |X|}]}{e^{\lambda \delta}}
+P(|X| > \delta) &=& P(e^{\lambda|X|} > e^{\lambda\delta}) \\ 
+&\leq& \dfrac{E[e^{\lambda |X|}]}{e^{\lambda \delta}}. \\ 
 \eQe
+As $e^{\lambda |X|} \leq e^{\lambda X} + e^{-\lambda X}$, it follows 
+that 
+\eQb
+P(|X| >  \delta) 
+&\leq& \dfrac{E[e^{\lambda X}+e^{-\lambda X}]}{
+e^{\lambda \delta}} \\
+&\leq& \dfrac{E[e^{\lambda X}] + E[e^{-\lambda X}]}{
+e^{\lambda \delta}}. \\
+\eQe 
+From the given, we obtain that 
+\eQb
+P(|X| > \delta) &\leq&
+2e^{c{\lambda}^2 /4 - \lambda \delta}, 
+\eQe
+for all $\lambda \in \mathbb{R}$. Since the bound is minimized at 
+$\lambda = \dfrac{2\delta}{c}$, which can be reasoned through 
+quadratic, we have that
+\eQb
+P(|X| > \delta) &\leq& 2e^{-\frac{\delta^2}{c}}, 
+\eQe
+as desired. $\qed$
 \end{solution}
 
 
